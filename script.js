@@ -1,5 +1,5 @@
-const AIO_USERNAME = process.env.AIO_USERNAME;
-const FEED = "led-control";
+//const AIO_USERNAME = process.env.AIO_USERNAME;
+//const FEED = "led-control";
 
 async function sendCommand(value) {
   await fetch(`/api/send`, {
