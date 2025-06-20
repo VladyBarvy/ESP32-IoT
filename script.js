@@ -115,3 +115,29 @@ ledOffBtn.addEventListener('click', turnOffLed);
 
 // Инициализация приложения
 connectToAdafruitIO();
+
+async function getConfig() {
+  try {
+      const response = await fetch('/api/config');
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return await response.json();
+  } catch (error) {
+      console.error('Failed to load config:', error);
+      throw error;
+  }
+}
+
+// Использование:
+async function initApp() {
+  try {
+      const config = await getConfig();
+      console.log('Config loaded:', config);
+      // Теперь можно инициализировать подключение к Adafruit IO
+  } catch (error) {
+      console.error('Failed to initialize app:', error);
+  }
+}
+
+initApp();
