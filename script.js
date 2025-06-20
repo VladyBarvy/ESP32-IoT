@@ -1,23 +1,43 @@
-// Конфигурация Adafruit IO
-const ADAFRUIT_IO_USERNAME = 'YOUR_ADAFRUIT_IO_USERNAME';
-const ADAFRUIT_IO_KEY = 'YOUR_ADAFRUIT_IO_KEY';
-const FEED_NAME = 'led-control';
-
 // Элементы DOM
 const ledOnBtn = document.getElementById('led-on');
 const ledOffBtn = document.getElementById('led-off');
 const ledStatus = document.getElementById('led-status');
 const connectionStatus = document.getElementById('connection-status');
 
+// Конфигурация Adafruit IO (будет получать из переменных среды)
+let ADAFRUIT_IO_USERNAME;
+let ADAFRUIT_IO_KEY;
+const FEED_NAME = 'led';
+
 // Инициализация
 let isConnected = false;
 let currentLedState = null;
 
+// Получаем конфигурацию с сервера
+async function getConfig() {
+    try {
+        const response = await fetch('/api/config');
+        const config = await response.json();
+        ADAFRUIT_IO_USERNAME = config.username;
+        ADAFRUIT_IO_KEY = config.key;
+        return true;
+    } catch (error) {
+        console.error('Failed to load config:', error);
+        return false;
+    }
+}
+
 // Подключение к Adafruit IO
-function connectToAdafruitIO() {
+async function connectToAdafruitIO() {
     connectionStatus.textContent = 'подключение...';
     
-    // Здесь мы бы использовали WebSocket или MQTT для реального подключения
+    const configLoaded = await getConfig();
+    if (!configLoaded) {
+        connectionStatus.textContent = 'ошибка загрузки конфигурации';
+        return;
+    }
+
+    // Здесь будет реальное подключение к Adafruit IO
     // Для демонстрации имитируем подключение
     setTimeout(() => {
         isConnected = true;
