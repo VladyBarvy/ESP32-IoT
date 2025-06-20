@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP32 LED Control</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>LED Control</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Управление светодиодом ESP32</h1>
-        <div class="status">
-            <p>Текущее состояние: <span id="led-status">неизвестно</span></p>
-        </div>
-        <div class="controls">
-            <button id="led-on" class="btn on">Включить (1)</button>
-            <button id="led-off" class="btn off">Выключить (0)</button>
-        </div>
-        <div class="connection-status">
-            <p>Состояние подключения: <span id="connection-status">не подключено</span></p>
-        </div>
-    </div>
-    <script src="script.js"></script>
+  <h1>ESP32 LED Control</h1>
+  <button id="on">Turn ON</button>
+  <button id="off">Turn OFF</button>
+  <script src="script.js"></script>
 </body>
 </html>
